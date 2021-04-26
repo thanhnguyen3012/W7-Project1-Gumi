@@ -20,33 +20,29 @@ class  FirstViewModel {
         self.delegate = delegate
     }
     
-    func getData(links: [String]) {
-        for link in links {
-            guard let url = URL(string: link) else { return }
-            
-            DispatchQueue.global(qos: .default).async {
-                URLSession.shared.dataTask(with: url, completionHandler: { (data, respond, error) in
-                    if let err = error {
-                        self.delegate?.showError(error: err.localizedDescription)
-                    } else {
-                        guard let res = respond as? HTTPURLResponse else { return }
-                        
-                        if res.statusCode == 200 {
-                            guard let data = data else {
-                                self.delegate?.showError(error: "Something wrong.")
-                                return
-                            }
-                            guard let img = UIImage(data: data) else {
-                                self.delegate?.showError(error: "Cannot parse data to UIImage.")
-                                return
-                            }
-                            self.delegate?.dataDownloaded(photo: img)
-                        } else {
-                            self.delegate?.showError(error: "Stop with status code: \(res.statusCode)")
-                        }
+    func getData(link: String) {
+        guard let url = URL(string: link) else { return }
+        
+        URLSession.shared.dataTask(with: url, completionHandler: { (data, respond, error) in
+            if let err = error {
+                self.delegate?.showError(error: err.localizedDescription)
+            } else {
+                guard let res = respond as? HTTPURLResponse else { return }
+                
+                if res.statusCode == 200 {
+                    guard let data = data else {
+                        self.delegate?.showError(error: "Something wrong.")
+                        return
                     }
-                }).resume()
+                    guard let img = UIImage(data: data) else {
+                        self.delegate?.showError(error: "Cannot parse data to UIImage.")
+                        return
+                    }
+                    self.delegate?.dataDownloaded(photo: img)
+                } else {
+                    self.delegate?.showError(error: "Stop with status code: \(res.statusCode)")
+                }
             }
-        }
+        }).resume()
     }
 }

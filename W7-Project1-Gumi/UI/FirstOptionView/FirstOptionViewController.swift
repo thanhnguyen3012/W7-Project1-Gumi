@@ -10,9 +10,13 @@ import UIKit
 class FirstOptionViewController: UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var contentView: UIView!
     
     lazy var viewModel = FirstViewModel(delegate: self)
+    var links = ["https://images.unsplash.com/photo-1512850183-6d7990f42385?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=934&q=80",
+                 "https://images.unsplash.com/photo-1580135657397-82accd914ef8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=886&q=80",
+                 "https://images.unsplash.com/photo-1508179522353-11ba468c4a1c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2100&q=80",
+                 "https://images.unsplash.com/photo-1580775540283-999441f7c437?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1234&q=80",
+                 "https://images.unsplash.com/photo-1517586979036-b7d1e86b3345?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1234&q=80"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,12 +26,9 @@ class FirstOptionViewController: UIViewController {
     func setupView() {
         title = "You choosed first option"
         
-        viewModel.getData(links: ["https://images.unsplash.com/photo-1512850183-6d7990f42385?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=934&q=80",
-                                  "https://images.unsplash.com/photo-1580135657397-82accd914ef8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=886&q=80",
-                                  "https://images.unsplash.com/photo-1508179522353-11ba468c4a1c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2100&q=80",
-                                  "https://images.unsplash.com/photo-1580775540283-999441f7c437?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1234&q=80",
-                                  "https://images.unsplash.com/photo-1517586979036-b7d1e86b3345?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1234&q=80"])
         
+        guard let link = self.links.popLast() else { return }
+        viewModel.getData(link: link)
         
         scrollView.contentSize = CGSize(width: self.view.frame.width, height: 0)
     }
@@ -51,6 +52,10 @@ extension FirstOptionViewController: FirstViewModelEvents {
             
             self.scrollView.addSubview(imageView)
             self.scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.scrollView.contentSize.height + imageView.frame.height)
+            
+            //Download the next photo in "links"
+            guard let link = self.links.popLast() else { return }
+            self.viewModel.getData(link: link)
         }
     }
 }
