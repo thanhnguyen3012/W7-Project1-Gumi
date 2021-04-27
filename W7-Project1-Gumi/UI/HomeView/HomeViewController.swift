@@ -21,13 +21,13 @@ class HomeViewController: UIViewController {
 
     @IBAction func firstOptionTapped(_ sender: Any) {
         let storyboard = UIStoryboard(name: "FirstOptionView", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "firstOptionViewController") as! FirstOptionViewController
+        guard let vc = storyboard.instantiateViewController(withIdentifier: "firstOptionViewController") as? FirstOptionViewController else { return }
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func secondOptionTapped(_ sender: Any) {
         let storyboard = UIStoryboard(name: "SecondOptionView", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "secondOptionViewController") as! SecondOptionViewController
+        guard let vc = storyboard.instantiateViewController(withIdentifier: "secondOptionViewController") as? SecondOptionViewController else { return}
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
