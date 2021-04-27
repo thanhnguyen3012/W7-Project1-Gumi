@@ -21,9 +21,11 @@ class PhotoTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func bindData(photo: UIImage) {
-        loadedImageView.image = photo
-        downloadingIndicatorView.stopAnimating()
+    func bindData(photo: UIImage?) {
+        if let photo = photo {
+            loadedImageView.image = photo
+            downloadingIndicatorView.stopAnimating()
+        }
     }
     
     static var identifier: String {

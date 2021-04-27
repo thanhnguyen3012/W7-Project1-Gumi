@@ -72,7 +72,9 @@
 		845D3A052636692A00566AF5 /* W7-Project1-Gumi */ = {
 			isa = PBXGroup;
 			children = (
-				845D3A1C2636696200566AF5 /* UI */,
+				845D3A1F263669C000566AF5 /* SecondOptionView */,
+				845D3A1E263669A700566AF5 /* FirstOptionView */,
+				845D3A1D2636699000566AF5 /* HomeView */,
 				845D3A062636692A00566AF5 /* AppDelegate.swift */,
 				845D3A082636692A00566AF5 /* SceneDelegate.swift */,
 				845D3A0F2636692B00566AF5 /* Assets.xcassets */,
@@ -80,16 +82,6 @@
 				845D3A142636692B00566AF5 /* Info.plist */,
 			);
 			path = "W7-Project1-Gumi";
-			sourceTree = "<group>";
-		};
-		845D3A1C2636696200566AF5 /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				845D3A1F263669C000566AF5 /* SecondOptionView */,
-				845D3A1E263669A700566AF5 /* FirstOptionView */,
-				845D3A1D2636699000566AF5 /* HomeView */,
-			);
-			path = UI;
 			sourceTree = "<group>";
 		};
 		845D3A1D2636699000566AF5 /* HomeView */ = {

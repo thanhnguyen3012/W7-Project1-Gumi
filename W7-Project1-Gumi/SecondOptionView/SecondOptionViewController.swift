@@ -45,27 +45,22 @@ class SecondOptionViewController: UIViewController {
         photoTableView.register(PhotoTableViewCell.nib, forCellReuseIdentifier: PhotoTableViewCell.identifier)
         photoTableView.delegate = self
         photoTableView.dataSource = self
-        
-//        viewModel.getData(links: links)
     }
 
 }
 
 extension SecondOptionViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return viewModel.listOfPhotos.count
         return links.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: PhotoTableViewCell.identifier, for: indexPath) as! PhotoTableViewCell
-//        cell.bindData(photo: viewModel.listOfPhotos[indexPath.row])
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: PhotoTableViewCell.identifier, for: indexPath) as? PhotoTableViewCell else { return UITableViewCell() }
         let link = links[indexPath.row]
-//        let queue = DispatchQueue(label: "queue.\(link)")
-//        queue.async {
+        if self.viewModel.cache.object(forKey: link as NSString) == nil {
             self.viewModel.getData(link: link)
-            cell.bindData(photo: self.viewModel.cache.object(forKey: link as NSString)!)
-//        }
+        }
+        cell.bindData(photo: self.viewModel.cache.object(forKey: link as NSString))
         
         return cell
     }
@@ -75,8 +70,9 @@ extension SecondOptionViewController: UITableViewDataSource {
 
 extension SecondOptionViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return (viewModel.listOfPhotos[indexPath.row].size.height / viewModel.listOfPhotos[indexPath.row].size.width) * view.frame.width
-        return (viewModel.cache.object(forKey: links[indexPath.row] as NSString)!.size.height / viewModel.cache.object(forKey: links[indexPath.row] as NSString)!.size.width) * view.frame.width
+        guard let img = viewModel.cache.object(forKey: links[indexPath.row] as NSString) else { return 50 }
+        let height = (img.size.height / img.size.width) * view.frame.width
+        return height
         
     }
 }
@@ -90,9 +86,10 @@ extension  SecondOptionViewController: SecondOptionViewModelEvents {
         }
     }
     
-    func downloadedPhoto() {
+    func downloadedPhoto(key: String) {
         DispatchQueue.main.async {
-            self.photoTableView.reloadData()
+            let index = IndexPath(row: self.links.firstIndex(of: key) ?? 0, section: 0)
+            self.photoTableView.reloadRows(at: [index], with: .automatic)
         }
     }
     
