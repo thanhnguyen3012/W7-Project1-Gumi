@@ -26,13 +26,22 @@ class FirstOptionViewController: UIViewController {
     func setupView() {
         title = "You choosed first option"
         
-        
         guard let link = self.links.popLast() else { return }
         viewModel.getData(link: link)
         
         scrollView.contentSize = CGSize(width: self.view.frame.width, height: 0)
     }
 
+    func updateView(photo: UIImage) {
+        DispatchQueue.main.async {
+            let imageView = UIImageView(frame: CGRect(x: 0, y: self.scrollView.contentSize.height, width: self.scrollView.contentSize.width, height: self.scrollView.contentSize.width * (photo.size.height / photo.size.width)))
+            imageView.image = photo
+            imageView.contentMode = .scaleAspectFill
+            
+            self.scrollView.addSubview(imageView)
+            self.scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.scrollView.contentSize.height + imageView.frame.height)
+        }
+    }
 }
 
 extension FirstOptionViewController: FirstViewModelEvents {
@@ -45,17 +54,10 @@ extension FirstOptionViewController: FirstViewModelEvents {
     }
     
     func dataDownloaded(photo: UIImage) {
-        DispatchQueue.main.async {
-            let imageView = UIImageView(frame: CGRect(x: 0, y: self.scrollView.contentSize.height, width: self.scrollView.contentSize.width, height: self.scrollView.contentSize.width * (photo.size.height / photo.size.width)))
-            imageView.image = photo
-            imageView.contentMode = .scaleAspectFill
-            
-            self.scrollView.addSubview(imageView)
-            self.scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.scrollView.contentSize.height + imageView.frame.height)
-            
-            //Download the next photo in "links"
-            guard let link = self.links.popLast() else { return }
-            self.viewModel.getData(link: link)
-        }
+        updateView(photo: photo)
+        
+        //Download the next photo in "links"
+        guard let link = self.links.popLast() else { return }
+        self.viewModel.getData(link: link)
     }
 }
