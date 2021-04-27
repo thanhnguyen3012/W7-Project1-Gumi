@@ -16,52 +16,57 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W3z-cR-Soi">
-                                <rect key="frame" x="15" y="358" width="384" height="80"/>
-                                <color key="backgroundColor" systemColor="systemIndigoColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="ACr-WI-jih"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                <state key="normal" title="Load 5 photos to ScrollView">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="20"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="firstOptionTapped:" destination="3MV-dj-J8D" eventType="touchUpInside" id="WJc-GI-TKQ"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OIh-6M-if6">
-                                <rect key="frame" x="15" y="458" width="384" height="80"/>
-                                <color key="backgroundColor" systemColor="systemIndigoColor"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                <state key="normal" title="Load 20 photos to TableView">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="20"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="secondOptionTapped:" destination="3MV-dj-J8D" eventType="touchUpInside" id="dnb-QZ-Yf5"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="QCo-F7-Aqp">
+                                <rect key="frame" x="15" y="360.5" width="384" height="175"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W3z-cR-Soi">
+                                        <rect key="frame" x="0.0" y="0.0" width="384" height="80"/>
+                                        <color key="backgroundColor" systemColor="systemIndigoColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="ACr-WI-jih"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                        <state key="normal" title="Load 5 photos to ScrollView">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="firstOptionTapped:" destination="3MV-dj-J8D" eventType="touchUpInside" id="WJc-GI-TKQ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OIh-6M-if6">
+                                        <rect key="frame" x="0.0" y="95" width="384" height="80"/>
+                                        <color key="backgroundColor" systemColor="systemIndigoColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="uek-EQ-ivZ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                        <state key="normal" title="Load 20 photos to TableView">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="secondOptionTapped:" destination="3MV-dj-J8D" eventType="touchUpInside" id="dnb-QZ-Yf5"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="R2Y-nW-HaM"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="OIh-6M-if6" firstAttribute="height" secondItem="W3z-cR-Soi" secondAttribute="height" id="0kx-f4-V5K"/>
-                            <constraint firstItem="W3z-cR-Soi" firstAttribute="centerY" secondItem="WGg-hT-t1G" secondAttribute="centerY" constant="-50" id="40H-kO-pJU"/>
-                            <constraint firstItem="R2Y-nW-HaM" firstAttribute="trailing" secondItem="W3z-cR-Soi" secondAttribute="trailing" constant="15" id="4KJ-Hi-6Qn"/>
-                            <constraint firstItem="OIh-6M-if6" firstAttribute="centerY" secondItem="WGg-hT-t1G" secondAttribute="centerY" constant="50" id="4nH-EA-P0q"/>
-                            <constraint firstItem="R2Y-nW-HaM" firstAttribute="trailing" secondItem="OIh-6M-if6" secondAttribute="trailing" constant="15" id="FBP-SN-kiA"/>
-                            <constraint firstItem="OIh-6M-if6" firstAttribute="leading" secondItem="R2Y-nW-HaM" secondAttribute="leading" constant="15" id="FeB-fv-sts"/>
-                            <constraint firstItem="W3z-cR-Soi" firstAttribute="leading" secondItem="R2Y-nW-HaM" secondAttribute="leading" constant="15" id="JQJ-lV-ipS"/>
+                            <constraint firstItem="QCo-F7-Aqp" firstAttribute="centerY" secondItem="WGg-hT-t1G" secondAttribute="centerY" id="JJx-Zf-JYV"/>
+                            <constraint firstItem="QCo-F7-Aqp" firstAttribute="leading" secondItem="R2Y-nW-HaM" secondAttribute="leading" constant="15" id="bw2-zE-x7l"/>
+                            <constraint firstItem="R2Y-nW-HaM" firstAttribute="trailing" secondItem="QCo-F7-Aqp" secondAttribute="trailing" constant="15" id="gCt-iQ-UTc"/>
+                            <constraint firstItem="QCo-F7-Aqp" firstAttribute="centerX" secondItem="WGg-hT-t1G" secondAttribute="centerX" id="td2-Av-1Fd"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="bGq-uj-p9x"/>
