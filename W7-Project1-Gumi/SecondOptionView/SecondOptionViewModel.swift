@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol SecondOptionViewModelEvents: class {
+protocol SecondOptionViewModelEvents: AnyObject {
     func downloadedPhoto(key: String)
     func showError(error: String)
 }

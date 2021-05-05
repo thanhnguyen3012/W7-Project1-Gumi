@@ -57,10 +57,11 @@ extension SecondOptionViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: PhotoTableViewCell.identifier, for: indexPath) as? PhotoTableViewCell else { return UITableViewCell() }
         let link = links[indexPath.row]
-        if self.viewModel.cache.object(forKey: link as NSString) == nil {
+        guard let img = self.viewModel.cache.object(forKey: link as NSString) else {
             self.viewModel.getData(link: link)
+            return cell
         }
-        cell.bindData(photo: self.viewModel.cache.object(forKey: link as NSString))
+        cell.bindData(photo: img)
         
         return cell
     }
