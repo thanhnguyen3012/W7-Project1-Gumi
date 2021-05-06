@@ -11,7 +11,6 @@ class SecondOptionViewController: UIViewController {
 
     @IBOutlet weak var photoTableView: UITableView!
     
-    lazy var viewModel = SecondOptionViewModel(delegate: self)
     let links = ["https://images.unsplash.com/photo-1552083375-1447ce886485?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2100&q=80",
                  "https://images.unsplash.com/photo-1610818544205-9830e171384c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80",
 "https://images.unsplash.com/photo-1612855619754-64a7c41db296?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80",
@@ -56,13 +55,9 @@ extension SecondOptionViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: PhotoTableViewCell.identifier, for: indexPath) as? PhotoTableViewCell else { return UITableViewCell() }
-        let link = links[indexPath.row]
-        guard let img = self.viewModel.cache.object(forKey: link as NSString) else {
-            self.viewModel.getData(link: link)
-            return cell
-        }
-        cell.bindData(photo: img)
-        
+        cell.delegate = self
+        cell.tag = indexPath.row
+        cell.loadImage(url: links[indexPath.row], index: indexPath.row)
         return cell
     }
     
@@ -71,28 +66,13 @@ extension SecondOptionViewController: UITableViewDataSource {
 
 extension SecondOptionViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        guard let img = viewModel.cache.object(forKey: links[indexPath.row] as NSString) else { return 50 }
-        let height = (img.size.height / img.size.width) * view.frame.width
-        return height
-        
+        guard let img = UIImageView.imageCache.object(forKey: NSString(string: links[indexPath.row])) else { return 50 }
+        return self.view.frame.width * (img.size.height / img.size.width)
     }
 }
 
-extension  SecondOptionViewController: SecondOptionViewModelEvents {
-    func showError(error: String) {
-        DispatchQueue.main.async {
-            let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-        }
+extension SecondOptionViewController: PhotoTableViewCellDelegate {
+    func photoTableViewCell(photoTableViewCell: PhotoTableViewCell, updateHeightForRow: Int, atIndex: Int) {
+        photoTableView.reloadRows(at: [IndexPath(row: atIndex, section: 0)], with: .none)
     }
-    
-    func downloadedPhoto(key: String) {
-        DispatchQueue.main.async {
-            let index = IndexPath(row: self.links.firstIndex(of: key) ?? 0, section: 0)
-            self.photoTableView.reloadRows(at: [index], with: .automatic)
-        }
-    }
-    
-    
 }

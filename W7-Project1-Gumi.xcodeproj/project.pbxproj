@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		84136A672642E42300C3964A /* UIImageView+CacheImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84136A662642E42300C3964A /* UIImageView+CacheImage.swift */; };
 		845D3A072636692A00566AF5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845D3A062636692A00566AF5 /* AppDelegate.swift */; };
 		845D3A092636692A00566AF5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845D3A082636692A00566AF5 /* SceneDelegate.swift */; };
 		845D3A102636692B00566AF5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 845D3A0F2636692B00566AF5 /* Assets.xcassets */; };
@@ -16,7 +17,6 @@
 		845D3A2C26366C4300566AF5 /* FirstOptionView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 845D3A2B26366C4300566AF5 /* FirstOptionView.storyboard */; };
 		845D3A2F26366C5300566AF5 /* SecondOptionView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 845D3A2E26366C5300566AF5 /* SecondOptionView.storyboard */; };
 		845D3A3226366C6900566AF5 /* SecondOptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845D3A3126366C6900566AF5 /* SecondOptionViewController.swift */; };
-		845D3A3526366C7300566AF5 /* SecondOptionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845D3A3426366C7300566AF5 /* SecondOptionViewModel.swift */; };
 		845D3A3826366C8200566AF5 /* FirstOptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845D3A3726366C8200566AF5 /* FirstOptionViewController.swift */; };
 		845D3A3B26366C8A00566AF5 /* FirstOptionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845D3A3A26366C8A00566AF5 /* FirstOptionViewModel.swift */; };
 		845D3A4026366DEB00566AF5 /* PhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845D3A3E26366DEB00566AF5 /* PhotoTableViewCell.swift */; };
@@ -24,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		84136A662642E42300C3964A /* UIImageView+CacheImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+CacheImage.swift"; sourceTree = "<group>"; };
 		845D3A032636692A00566AF5 /* W7-Project1-Gumi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "W7-Project1-Gumi.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		845D3A062636692A00566AF5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		845D3A082636692A00566AF5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -35,7 +36,6 @@
 		845D3A2B26366C4300566AF5 /* FirstOptionView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FirstOptionView.storyboard; sourceTree = "<group>"; };
 		845D3A2E26366C5300566AF5 /* SecondOptionView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SecondOptionView.storyboard; sourceTree = "<group>"; };
 		845D3A3126366C6900566AF5 /* SecondOptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondOptionViewController.swift; sourceTree = "<group>"; };
-		845D3A3426366C7300566AF5 /* SecondOptionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondOptionViewModel.swift; sourceTree = "<group>"; };
 		845D3A3726366C8200566AF5 /* FirstOptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstOptionViewController.swift; sourceTree = "<group>"; };
 		845D3A3A26366C8A00566AF5 /* FirstOptionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstOptionViewModel.swift; sourceTree = "<group>"; };
 		845D3A3E26366DEB00566AF5 /* PhotoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoTableViewCell.swift; sourceTree = "<group>"; };
@@ -53,6 +53,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		84136A652642E40100C3964A /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				84136A662642E42300C3964A /* UIImageView+CacheImage.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		845D39FA2636692A00566AF5 = {
 			isa = PBXGroup;
 			children = (
@@ -72,6 +80,7 @@
 		845D3A052636692A00566AF5 /* W7-Project1-Gumi */ = {
 			isa = PBXGroup;
 			children = (
+				84136A652642E40100C3964A /* Extension */,
 				845D3A1F263669C000566AF5 /* SecondOptionView */,
 				845D3A1E263669A700566AF5 /* FirstOptionView */,
 				845D3A1D2636699000566AF5 /* HomeView */,
@@ -109,7 +118,6 @@
 				845D3A3D26366DCC00566AF5 /* Parts */,
 				845D3A2E26366C5300566AF5 /* SecondOptionView.storyboard */,
 				845D3A3126366C6900566AF5 /* SecondOptionViewController.swift */,
-				845D3A3426366C7300566AF5 /* SecondOptionViewModel.swift */,
 			);
 			path = SecondOptionView;
 			sourceTree = "<group>";
@@ -203,7 +211,7 @@
 				845D3A24263669E700566AF5 /* HomeViewController.swift in Sources */,
 				845D3A4026366DEB00566AF5 /* PhotoTableViewCell.swift in Sources */,
 				845D3A3226366C6900566AF5 /* SecondOptionViewController.swift in Sources */,
-				845D3A3526366C7300566AF5 /* SecondOptionViewModel.swift in Sources */,
+				84136A672642E42300C3964A /* UIImageView+CacheImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

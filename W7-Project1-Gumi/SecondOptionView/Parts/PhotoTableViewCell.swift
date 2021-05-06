@@ -7,25 +7,40 @@
 
 import UIKit
 
+protocol PhotoTableViewCellDelegate {
+    func photoTableViewCell(photoTableViewCell: PhotoTableViewCell, updateHeightForRow: Int, atIndex: Int)
+}
+
 class PhotoTableViewCell: UITableViewCell {
     
     @IBOutlet weak var loadedImageView: UIImageView!
     @IBOutlet weak var downloadingIndicatorView: UIActivityIndicatorView!
     
+    var delegate: PhotoTableViewCellDelegate?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        downloadingIndicatorView.startAnimating()
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+        self.isSelected = false
     }
     
-    func bindData(photo: UIImage?) {
-        if let photo = photo {
-            loadedImageView.image = photo
-            downloadingIndicatorView.stopAnimating()
-        }
+    override func prepareForReuse() {
+        loadedImageView.image = nil
+    }
+    func loadImage(url: String, index: Int) {
+        downloadingIndicatorView.startAnimating()
+
+        loadedImageView.getImage(url: url, completionHandler: { (img) in
+            guard let image = img else { return }
+            if self.tag == index {
+                self.loadedImage(img: image, index: index)
+            }
+        })
+    }
+    
+    func loadedImage(img: UIImage, index: Int) {
+        loadedImageView.image = img
+        downloadingIndicatorView.stopAnimating()
+        delegate?.photoTableViewCell(photoTableViewCell: self, updateHeightForRow: Int(img.size.height), atIndex: index)
     }
     
     static var identifier: String {
